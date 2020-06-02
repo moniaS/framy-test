@@ -21,7 +21,7 @@ jobs:
       # Uses community Action to install Flutter
       - uses: subosito/flutter-action@v1.3.0
         with:
-          channel: 'master'
+          channel: 'dev'
       # Runs commands using the runners shell
       - run: flutter pub get
       - run: flutter analyze
