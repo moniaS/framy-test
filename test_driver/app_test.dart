@@ -1,4 +1,6 @@
 // Imports the Flutter Driver API.
+import 'dart:io';
+
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -24,8 +26,15 @@ void main() {
       }
     });
 
+    takeScreenshot(FlutterDriver driver, String path) async {
+      final List<int> pixels = await driver.screenshot();
+      final File file = new File(path);
+      await file.writeAsBytes(pixels);
+    }
+
     test('starts at 0', () async {
       // Use the `driver.getText` method to verify the counter starts at 0.
+      await takeScreenshot(driver, '/tmp/screenshots/counter_0.png');
       expect(await driver.getText(counterTextFinder), "0");
     });
 

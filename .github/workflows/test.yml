@@ -22,5 +22,10 @@ jobs:
       - run: flutter devices
       - run: flutter doctor
       - run: flutter driver --target=test_driver/app.dart -d macos
+      - name: upload screenshot
+        uses: actions/upload-artifact@master
+        with:
+          name: screenshots
+          path: /tmp/screenshots/
 
  
