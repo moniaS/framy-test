@@ -12,6 +12,11 @@ on:
 jobs:
   # This workflow contains a single job called "test"
   test:
+    strategy:
+      matrix:
+        device:
+          - "iPhone 11 Pro Max (13.2.2)"
+          - "macOS"
     # The type of runner that the job will run on
     runs-on: macos-latest
 
