@@ -24,9 +24,10 @@ jobs:
           channel: 'dev'
       # Runs commands using the runners shell
       - run: flutter pub get
-      - run: flutter analyze
       - run: flutter test
+      - run: flutter emulators
       - run: flutter devices
+      - run: flutter doctor
       - run: flutter driver --target=test_driver/app.dart -d macos
 
  
