@@ -34,6 +34,9 @@ void main() {
 
     test('starts at 0', () async {
       // Use the `driver.getText` method to verify the counter starts at 0.
+      if (FileSystemEntity.typeSync('/tmp/screenshots') == FileSystemEntityType.notFound) {
+        await Directory('/tmp/screenshots').create(recursive: true);
+      }
       await takeScreenshot(driver, '/tmp/screenshots/counter_0.png');
       expect(await driver.getText(counterTextFinder), "0");
     });
