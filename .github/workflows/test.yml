@@ -9,18 +9,21 @@ on:
 jobs:
   test:
     runs-on: macos-latest
-
     steps:
+      - env:
+          flutter_path: /Users/runner/hostedtoolcache/flutter
       - uses: actions/checkout@v1
+      - name: Cache Flutter dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${ flutter_path }
+          key: ${{ runner.os }}-flutter
       - uses: subosito/flutter-action@v1.3.0
         with:
           channel: 'dev'
       - run: flutter config --enable-macos-desktop
       - run: flutter pub get
       - run: flutter test
-      - run: flutter emulators
-      - run: flutter devices
-      - run: flutter doctor
       - run: flutter driver --target=test_driver/app.dart -d macos
       - name: upload screenshot
         uses: actions/upload-artifact@master
