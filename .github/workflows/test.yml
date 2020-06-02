@@ -15,7 +15,8 @@ jobs:
     strategy:
       matrix:
         device:
-          - "iPhone 11 Pro Max (13.5)"
+          - "Mac (1401)"
+          - "iPhone 11 Pro Max (13.4.1)"
     # The type of runner that the job will run on
     runs-on: macos-latest
 
