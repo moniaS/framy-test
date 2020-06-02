@@ -10,11 +10,11 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-      - env:
-          flutter_path: /Users/runner/hostedtoolcache/flutter
       - uses: actions/checkout@v1
       - name: Cache Flutter dependencies
         uses: actions/cache@v1
+        env:
+          flutter_path: /Users/runner/hostedtoolcache/flutter
         with:
           path: ${ flutter_path }
           key: ${{ runner.os }}-flutter
