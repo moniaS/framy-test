@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  integration-test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
@@ -21,7 +21,6 @@ jobs:
           channel: 'dev'
       - run: flutter config --enable-macos-desktop
       - run: flutter pub get
-      - run: flutter test
       - run: flutter driver --target=test_driver/app.dart -d macos
       - name: upload screenshot
         uses: actions/upload-artifact@master
