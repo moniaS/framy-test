@@ -17,7 +17,20 @@ jobs:
       - run: flutter config --enable-macos-desktop
       - run: flutter pub get
       - run: flutter test
+      - name: "List all simulators"
+          run: "xcrun instruments -s"
+      - name: "Start simulator"
+        run: |
+          UDID=$(
+            xcrun instruments -s |
+            awk \
+              -F ' *[][]' \
+              -v 'device=iPhone 11 Pro (13.4.1)' \
+              '$1 == device { print $2 }'
+          )
+          xcrun simctl boot "${UDID:?No Simulator with this name found}"
       - run: flutter driver --target=test_driver/app.dart -d macos
+      - run: flutter driver --target=test_driver/app.dart -d iPhone 11 Pro
       - name: upload screenshot
         uses: actions/upload-artifact@master
         with:
